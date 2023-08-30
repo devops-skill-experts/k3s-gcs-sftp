@@ -1,0 +1,11 @@
+apiVersion: v2
+name: helm-init-chart
+version: 1.0.0
+appVersion: 1.23.0
+description: A Helm chart wrapper for sFTP GCS
+
+dependencies:
+  - name: k8s-sftp-gcs
+    version: "0.1.4"
+    repository: "https://danuk.github.io/k8s-sftp-gcs/"
+    condition: k8s-sftp-gcs.enabled

@@ -1,0 +1,53 @@
+k8s-sftp-gcs:
+  enabled: true
+  fullnameOverride: sftp
+  nameOverride: sftp
+  replicaCount: 1
+
+  users:
+    - user: demo1
+      password: demo1234
+      bucket: devops-skills-sftp
+      onlyDir: demo1
+
+    - user: demo2
+      password: demo1234
+      bucket: devops-skills-sftp
+      onlyDir: demo2
+
+  service:
+    type: ClusterIP
+    port: 2022
+    annotations: {}
+
+  image:
+    repository: danuk/k8s-sftp-gcs
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  imagePullSecrets: []
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext:
+    privileged: true
+    capabilities:
+      add:
+      - SYS_ADMIN
+
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
